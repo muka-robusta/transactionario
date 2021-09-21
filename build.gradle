@@ -1,0 +1,53 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'org.flywaydb.flyway' version '7.15.0'
+	id "com.diffplug.eclipse.apt" version "3.32.2"
+}
+
+group = 'me.vegura'
+version = '1.0'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	implementation group: 'org.flywaydb', name: 'flyway-core', version: '7.15.0'
+	// https://mvnrepository.com/artifact/org.flywaydb/flyway-core
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	compileOnly 'org.projectlombok:lombok'
+	compileOnly 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+	runtimeOnly 'org.postgresql:postgresql'
+	
+	annotationProcessor 'org.projectlombok:lombok'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+
+flyway {
+	url = 'jdbc:postgresql://localhost:5432/transactionario_db'
+	user = 'postgres'
+	password = 'p@ssw0rd'
+}
+

@@ -1,0 +1,14 @@
+version: "3" 
+services:
+  postgres_transactionario_dev:
+    container_name: postgres_transactionario_dev
+    image: postgres:13
+    restart: always
+    user: postgres
+    environment:
+      POSTGRES_PASSWORD: p@ssw0rd
+      POSTGRES_DB: transactionario_db
+    ports:
+      - "5432:5432"
+    
+    
